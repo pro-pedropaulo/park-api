@@ -2,6 +2,7 @@ package com.central.parkapi.services;
 
 import com.central.parkapi.Dtos.UserAlterPasswordDTO;
 import com.central.parkapi.entity.User;
+import com.central.parkapi.exceptions.UserNotFoundException;
 import com.central.parkapi.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class UsersService {
     @Transactional
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("User not found")
+                () -> new UserNotFoundException("User not found with ID: " + id)
         );
     }
 

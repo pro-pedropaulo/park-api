@@ -46,6 +46,7 @@ public class UserController {
         User user = UserMapper.INSTANCE.userDTOToUser(userDTO);
         User createdUser = usersService.createUser(user);
         UserResponseDTO createdUserDTO = UserMapper.INSTANCE.userToUserResponseDTO(createdUser);
+        System.out.println("Created User DTO: " + createdUserDTO);  // Debug log
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUserDTO);
     }
 
@@ -59,6 +60,4 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
-
-
 }
